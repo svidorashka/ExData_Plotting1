@@ -19,10 +19,14 @@ Data<-read.table("filtered.txt", sep=";", header=TRUE, quote="",na.string="?", s
 #define the time axis
 x<-strptime(paste(Data$Date, Data$Time), "%d/%m/%Y %H:%M:%S");
 
+
+
+#open png
+png("Plot4.png", width=480, height=480)
+
 #define the plotting matrix layout
 par(mfrow=c(2,2))
 par(mar=c(4,4,2,2))
-
 
 #upper left plot
 plot(x,Data$Global_active_power,typ='l', main="", xlab="", ylab="Global Active Power")
@@ -42,5 +46,5 @@ legend("topright",bty="n", lty=1,col=c("black","red", "blue"),legend=c("Sub_mete
 plot(x,Data$Global_reactive_power,typ='l', main="",  ylab="Global_rective_power", xlab="datetime")
 
 
-dev.copy(png, file = "Plot4.png") 
+#clos png
 dev.off()

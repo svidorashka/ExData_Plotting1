@@ -14,16 +14,14 @@ close(Unzipped)
 #Read data into Data.Frame
 Data<-read.table("filtered.txt", sep=";", header=TRUE, quote="",na.string="?", stringsAsFactors=TRUE)
 
-#Build the chart and copy to png
+#define the time axis
 x<-strptime(paste(Data$Date, Data$Time), "%d/%m/%Y %H:%M:%S");
 
-
+#Build the chart into png
+png("Plot3.png", width=480, height=480)
 plot(x,y,type="n", main="", ylab="Energy sub metering",ylim=c(0, 39))
 lines(x,Data$Sub_metering_1, col="black")
 lines(x,Data$Sub_metering_2, col="red")
 lines(x,Data$Sub_metering_3, col="blue")
 legend("topright",lty=1,col=c("black","red", "blue"),legend=c("Sub_metering_1","Sub_metering_2", "Sub_metering_3"), cex=.8)
-
-
-dev.copy(png, file = "Plot3.png") 
 dev.off()

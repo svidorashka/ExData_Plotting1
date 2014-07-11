@@ -14,11 +14,13 @@ close(Unzipped)
 #Read data into Data.Frame
 Data<-read.table("filtered.txt", sep=";", header=TRUE, quote="",na.string="?", stringsAsFactors=TRUE)
 
-#Build the chart and copy to png
+#create the variables for plotting
 x<-strptime(paste(Data$Date, Data$Time), "%d/%m/%Y %H:%M:%S");
 y<-Data$Global_active_power
 
-
+#Build the chart into png
+png("Plot2.png", width=480, height=480)
 plot(x,y,typ='l', main="", xlab="", ylab="Global Active Power (kilowatts)")
-dev.copy(png, file = "Plot2.png") 
 dev.off()
+
+
