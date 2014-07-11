@@ -14,7 +14,13 @@ close(Unzipped)
 #Read data into Data.Frame
 Data<-read.table("filtered.txt", sep=";", header=TRUE, quote="",na.string="?", stringsAsFactors=TRUE)
 
-#Build the chart and copy to png
-hist(Data$Global_active_power, col="red", main="Global Active Power", xlab="Global Active Power (kilowatts)");
-dev.copy(png, file = "Plot1.png") 
+#Build the chart into png
+png("Plot1.png", width=480, height=480)
+hist (Data$Global_active_power, 
+      col="red", 
+      main="Global Active Power", 
+      xlab="Global Active Power (kilowatts)",
+      width=480, 
+      height=480
+)
 dev.off()
